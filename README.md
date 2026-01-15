@@ -52,3 +52,13 @@ Each closed issue = points (see issue labels):
 You have access to Azure for deployment. Credentials will be provided separately.
 
 Good luck!
+
+## Setup
+
+```bash
+pip install -e .
+```
+
+## Run script
+
+`python src/nyc_taxi_analytics/main.py`

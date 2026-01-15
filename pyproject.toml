@@ -1,0 +1,14 @@
+[project]
+name = "nyc-taxi-analytics"
+version = "0.1.0"
+description = "NYC Taxi Analytics Dashboard"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0.0",
+    "pyarrow>=14.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

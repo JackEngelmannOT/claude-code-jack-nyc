@@ -1,8 +1,15 @@
 import pandas as pd
 
+DEFAULT_URL = "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-01.parquet"
 
-def load_data(url: str = "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-01.parquet") -> pd.DataFrame:
+
+def load_data(url: str = DEFAULT_URL) -> pd.DataFrame:
     return pd.read_parquet(url)
+
+
+def filter_by_hour(df: pd.DataFrame, start_hour: int, end_hour: int) -> pd.DataFrame:
+    hour = df["tpep_pickup_datetime"].dt.hour
+    return df[(hour >= start_hour) & (hour < end_hour)]
 
 
 def get_key_statistics(df: pd.DataFrame) -> dict:
@@ -11,11 +18,3 @@ def get_key_statistics(df: pd.DataFrame) -> dict:
         "average_fare": df["fare_amount"].mean(),
         "average_distance": df["trip_distance"].mean(),
     }
-
-
-if __name__ == "__main__":
-    df = load_data()
-    stats = get_key_statistics(df)
-    print(f"Total Trips: {stats['total_trips']:,}")
-    print(f"Average Fare: ${stats['average_fare']:.2f}")
-    print(f"Average Distance: {stats['average_distance']:.2f} miles")

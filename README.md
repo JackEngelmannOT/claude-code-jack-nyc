@@ -59,6 +59,33 @@ Good luck!
 pip install -e .
 ```
 
-## Run script
+## CLI Usage
 
-`python src/nyc_taxi_analytics/main.py`
+```bash
+nyc-taxi                              # all trips
+nyc-taxi --start-hour 8 --end-hour 10 # filter by hour range
+nyc-taxi --help                       # see all options
+```
+
+### Options
+
+- `--start-hour` - Start hour for filtering (0-23)
+- `--end-hour` - End hour for filtering (0-23)
+- `--url` - Custom parquet data URL
+
+## API
+
+### `load_data(url: str) -> pd.DataFrame`
+
+Loads NYC taxi trip data from a parquet URL.
+
+### `filter_by_hour(df: pd.DataFrame, start_hour: int, end_hour: int) -> pd.DataFrame`
+
+Filters trips by pickup hour range (e.g., `filter_by_hour(df, 8, 10)` for 8am-10am).
+
+### `get_key_statistics(df: pd.DataFrame) -> dict`
+
+Returns key statistics:
+- `total_trips`: Number of trips
+- `average_fare`: Mean fare amount
+- `average_distance`: Mean trip distance

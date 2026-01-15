@@ -1,6 +1,7 @@
 import pandas as pd
 
 DEFAULT_URL = "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-01.parquet"
+ZONE_LOOKUP_URL = "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
 
 
 def load_data(url: str = DEFAULT_URL) -> pd.DataFrame:
@@ -25,4 +26,21 @@ def get_data_info(df: pd.DataFrame) -> dict:
         "row_count": len(df),
         "columns": list(df.columns),
         "column_count": len(df.columns),
+    }
+
+
+def load_zone_lookup(url: str = ZONE_LOOKUP_URL) -> pd.DataFrame:
+    return pd.read_csv(url)
+
+
+def get_zone_info(zone_lookup: pd.DataFrame, location_id: int) -> dict | None:
+    row = zone_lookup[zone_lookup["LocationID"] == location_id]
+    if row.empty:
+        return None
+    row = row.iloc[0]
+    return {
+        "location_id": int(row["LocationID"]),
+        "borough": row["Borough"],
+        "zone": row["Zone"],
+        "service_zone": row["service_zone"],
     }

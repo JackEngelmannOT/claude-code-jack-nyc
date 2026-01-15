@@ -18,3 +18,11 @@ def get_key_statistics(df: pd.DataFrame) -> dict:
         "average_fare": df["fare_amount"].mean(),
         "average_distance": df["trip_distance"].mean(),
     }
+
+
+def get_data_info(df: pd.DataFrame) -> dict:
+    return {
+        "row_count": len(df),
+        "columns": list(df.columns),
+        "column_count": len(df.columns),
+    }

@@ -14,10 +14,11 @@ def filter_by_hour(df: pd.DataFrame, start_hour: int, end_hour: int) -> pd.DataF
 
 
 def get_key_statistics(df: pd.DataFrame) -> dict:
+    valid_distances = df[df["trip_distance"] > 0]["trip_distance"]
     return {
         "total_trips": len(df),
         "average_fare": df["fare_amount"].mean(),
-        "average_distance": df["trip_distance"].mean(),
+        "average_distance": valid_distances.mean(),
     }
 
 

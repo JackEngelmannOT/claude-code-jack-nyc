@@ -72,6 +72,15 @@ nyc-taxi --help                       # see all options
 - `--start-hour` - Start hour for filtering (0-23)
 - `--end-hour` - End hour for filtering (0-23)
 - `--url` - Custom parquet data URL
+- `--info` - Display dataset info (row count, columns)
+- `--zone <ID>` - Look up zone info by LocationID
+- `--top-pickups` - Show top 10 busiest pickup zones
+- `--top-dropoffs` - Show top 10 busiest dropoff zones
+- `--payments` - Show payment type breakdown
+- `--tip-avg` - Show average tip percentage
+- `--tip-by-borough` - Show tip percentage by borough (with bar chart)
+- `--hourly-chart` - Show trips by hour of day (with bar chart)
+- `--daily-chart` - Show trips by day of week (with bar chart)
 
 ## API
 
